@@ -7,7 +7,7 @@ import paho.mqtt.client as mqtt
 
 def get_config():
     with open("/boot/config.yml") as file:
-        return yaml.load(file)
+        return yaml.safe_load(file)
 
 
 config = get_config()
@@ -30,7 +30,7 @@ def main():
 
     client = mqtt.Client(config["mqtt"]["client"])
 
-    client.sername_pw_set(config["mqtt"]["username"], password=config["mqtt"]["password"])
+    client.username_pw_set(config["mqtt"]["username"], password=config["mqtt"]["password"])
 
     client.on_connect = on_connect
     client.on_message = on_message
