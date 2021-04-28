@@ -1,7 +1,6 @@
-ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-
 [local]
 127.0.0.1
 
 [remote]
 raspberrypi.local
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
