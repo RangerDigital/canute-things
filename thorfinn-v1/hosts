@@ -3,7 +3,3 @@
 
 [remote]
 raspberrypi.local
-
-[remote:vars]
-ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
