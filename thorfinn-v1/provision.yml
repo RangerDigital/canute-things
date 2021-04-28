@@ -3,6 +3,7 @@
   hosts: all
   become: yes
   gather_facts: no
+  remote_user: pi
 
   tasks:
     - name: Set a Hostname
