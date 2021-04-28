@@ -17,6 +17,10 @@
       apt:
         name: ansible
 
+    - name: Install Git
+      apt:
+        name: git
+
     - name: Remove the user 'pi'
       ansible.builtin.user:
         name: pi

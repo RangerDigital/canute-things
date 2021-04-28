@@ -4,9 +4,9 @@
   become: yes
   tasks:
     - name: Set a Hostname
-      ansible.builtin.hostname:
+      hostname:
         name: thorfinn
-        
+
     - name: Get latest controller module.
       copy: 
         src: controller
