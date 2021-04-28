@@ -1,0 +1,26 @@
+---
+- name: Factory provision Thorfinn device.
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Set a Hostname
+      ansible.builtin.hostname:
+        name: thorfinn
+
+    - name: Add the user 'thorfinn'
+      ansible.builtin.user:
+        name: thorfinn
+
+    - name: Install Ansible
+      apt:
+        name: ansible
+
+    - name: Remove the user 'pi'
+      ansible.builtin.user:
+        name: pi
+        state: absent
+        remove: yes
+
+    

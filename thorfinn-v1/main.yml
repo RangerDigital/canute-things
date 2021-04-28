@@ -1,0 +1,10 @@
+---
+- name: Update Thorfinn device.
+  hosts: all
+  become: yes
+  tasks:
+    - name: Get latest controller module.
+      copy: 
+        src: controller
+        dest: ~/
+  

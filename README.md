@@ -1,2 +1,3 @@
-# canute-things
-🔒 Controller devices for building operating system Canute OS.
+# 🔒 Canute Things
+
+Controller devices for building operating system Canute OS.
