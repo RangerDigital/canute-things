@@ -1,14 +1,14 @@
 ---
 - name: Update Thorfinn device.
   hosts: all
-  become: yes
   tasks:
-    - name: Set a Hostname
-      hostname:
-        name: thorfinn
-
     - name: Get latest controller module.
       copy: 
         src: controller
         dest: ~/
-  
+
+    - name: Install Python requirements.
+      pip:
+        requirements: _/controller/requirements.txt
+        executable: pip3
+      

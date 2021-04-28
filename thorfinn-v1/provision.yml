@@ -6,12 +6,14 @@
 
   tasks:
     - name: Set a Hostname
-      ansible.builtin.hostname:
+      hostname:
         name: thorfinn
 
     - name: Add the user 'thorfinn'
-      ansible.builtin.user:
+      user:
         name: thorfinn
+        groups: sudo
+        append: yes
 
     - name: Install Ansible
       apt:
@@ -21,8 +23,14 @@
       apt:
         name: git
 
+    - name: Add Ansible-pull to crontab
+      cron:
+        name: "OTA Update"
+        minute: "*/5"
+        job: "ansible-pull -o -U https://github.com/RangerDigital/canute-things thorfinn-v1/main.yml -i thorfinn-v1/hosts"
+
     - name: Remove the user 'pi'
-      ansible.builtin.user:
+      user:
         name: pi
         state: absent
         remove: yes
