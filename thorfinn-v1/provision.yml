@@ -10,11 +10,6 @@
       hostname:
         name: thorfinn
 
-    - name: Install Python Pip
-      become: yes
-      apt:
-        name: ['python3-pip', 'python3-setuptools']
-
     - name: Install Ansible
       become: yes
       apt:
