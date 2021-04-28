@@ -9,6 +9,6 @@
 
     - name: Install Python requirements.
       pip:
-        requirements: _/controller/requirements.txt
+        requirements: ~/controller/requirements.txt
         executable: pip3
       
