@@ -1,40 +1,28 @@
 ---
 - name: Factory provision Thorfinn device.
   hosts: remote
-  become: yes
   gather_facts: no
   remote_user: pi
 
   tasks:
     - name: Set a Hostname
+      become: yes
       hostname:
         name: thorfinn
 
-    - name: Add the user 'thorfinn'
-      user:
-        name: thorfinn
-        password: thorfinn
-        groups: sudo
-        append: yes
-
     - name: Install Ansible
+      become: yes
       apt:
         name: ansible
 
     - name: Install Git
+      become: yes
       apt:
         name: git
 
-    - name: Add Ansible-pull to crontab
+    - name: Add Ansible-Pull to crontab
       cron:
         name: "OTA Update"
         minute: "*/5"
         job: "ansible-pull -o -U https://github.com/RangerDigital/canute-things thorfinn-v1/main.yml -i thorfinn-v1/hosts"
 
-    - name: Remove the user 'pi'
-      user:
-        name: pi
-        state: absent
-        remove: yes
-
-    
