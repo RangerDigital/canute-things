@@ -1,6 +1,6 @@
 ---
 - name: Factory provision Thorfinn device.
-  hosts: all
+  hosts: remote
   become: yes
   gather_facts: no
   remote_user: pi
