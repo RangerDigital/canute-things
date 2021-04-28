@@ -1,0 +1,8 @@
+wifi:
+  ssid: ''
+  password: ''
+
+mqtt:
+  client: ''
+  username: ''
+  password: ''
