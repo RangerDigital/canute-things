@@ -1,28 +1,31 @@
 ---
-- name: Factory provision Thorfinn device.
+- name: Provision Thorfinn edge device for Canute OS.
   hosts: remote
-  gather_facts: no
+  
+  become: yes
   remote_user: pi
+  gather_facts: no
 
   tasks:
-    - name: Set a Hostname
-      become: yes
+    - name: Update device hostname.
       hostname:
         name: thorfinn
 
-    - name: Install Ansible
+    - name: Install Ansible.
       become: yes
       apt:
         name: ansible
+        state: latest
 
-    - name: Install Git
-      become: yes
+    - name: Install Git.
       apt:
         name: git
+        state: latest
 
-    - name: Add Ansible-Pull to crontab
+    - name: Add OTA update as a cron job.
       cron:
-        name: "OTA Update"
+        user: pi
+        name: ota
         minute: "*/5"
         job: "ansible-pull -o -U https://github.com/RangerDigital/canute-things thorfinn-v1/main.yml -i thorfinn-v1/hosts"
 
