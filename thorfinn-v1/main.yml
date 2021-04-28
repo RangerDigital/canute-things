@@ -1,18 +1,14 @@
 ---
-- name: Update Thorfinn device.
-  hosts: all
-  tasks:
-    - name: Install Python Pip
-      become: yes
-      apt:
-        name: ['python3-pip', 'python3-setuptools']
+- name: OTA update Thorfinn edge device for Canute OS.
+  hosts: local
 
-    - name: Get latest controller module.
+  tasks:
+    - name: Get the latest controller module code.
       copy: 
         src: controller
         dest: ~/
 
-    - name: Install Python requirements.
+    - name: Install controller module code python requirements.
       pip:
         requirements: ~/controller/requirements.txt
         executable: pip3
