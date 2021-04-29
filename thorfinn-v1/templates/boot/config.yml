@@ -6,3 +6,7 @@ mqtt:
   client: ''
   username: ''
   password: ''
+
+locks:
+  - name: Test Lock
+    pin: 3
