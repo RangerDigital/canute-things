@@ -21,7 +21,7 @@ print("Config:", config)
 locks = []
 
 for item in config["locks"]:
-    locks.append(DigitalOutputDevice(item["pin"]))
+    locks.append(DigitalOutputDevice(item["pin"], , active_high=False))
 
 print("Locks:", locks)
 
