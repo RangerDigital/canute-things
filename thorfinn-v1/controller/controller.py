@@ -53,7 +53,7 @@ def on_message(client, userdata, msg):
 
         if topic[4] == "set":
             try:
-                lock = locks[topic[3]]
+                lock = locks[int(topic[3])]
 
                 lock.blink(on_time=0.5, off_time=0.5, n=1)
             except:
