@@ -64,6 +64,7 @@ def main():
     client = mqtt.Client(config["mqtt"]["client"])
 
     client.username_pw_set(config["mqtt"]["username"], password=config["mqtt"]["password"])
+    client.will_set("things/" + config["mqtt"]["client"] + "/status", json.dumps({"online": False}))
 
     client.on_connect = on_connect
     client.on_message = on_message
