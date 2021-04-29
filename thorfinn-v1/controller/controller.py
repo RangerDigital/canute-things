@@ -27,7 +27,7 @@ locks = []
 for i, item in enumerate(config["locks"]):
     locks.append(DigitalOutputDevice(item["pin"], active_high=False))
 
-    shadows.append({"name": item["name"], "class": "lock", "topic": "things/" + config["mqtt"]["client"] + "/" + i + "/set"})
+    shadows.append({"name": item["name"], "class": "lock", "topic": "things/" + config["mqtt"]["client"] + "/locks/" + str(i) + "/set"})
 
 print("Locks:", locks)
 
