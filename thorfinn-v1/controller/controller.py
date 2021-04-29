@@ -39,7 +39,7 @@ def on_message(client, userdata, msg):
     if topic[2] == "locks":
         print("--> Locks")
 
-        i = int(topic["3"])
+        i = int(topic[3])
         print("ID:", i)
 
         lock = locks[i]
