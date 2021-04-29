@@ -2,6 +2,7 @@
 
 import yaml
 from rich import print
+
 from gpiozero import DigitalOutputDevice
 import paho.mqtt.client as mqtt
 
@@ -11,23 +12,23 @@ def get_config():
         return yaml.safe_load(file)
 
 
-locks = []
-
-
+# Get config
 config = get_config()
+print("Config:", config)
 
-print("Hello World!", config)
 
+# Get locks
+locks = []
 
 for item in config["locks"]:
     locks.append(DigitalOutputDevice(item["pin"]))
 
+print("Locks:", locks)
+
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
-
     client.subscribe("devices/" + config["mqtt"]["client"] + "/#")
-    client.publish("devices/" + config["mqtt"]["client"] + "/info", "Hello!")
 
 
 def on_message(client, userdata, msg):
@@ -36,8 +37,9 @@ def on_message(client, userdata, msg):
     topic = msg.topic.split("/")
 
     if topic[2] == "locks":
-        lock = locks[topic["3"]]
+        lock = locks[int(topic["3"])]
 
+        print("Blink!")
         lock.blink(on_time=0.5, off_time=0.5, n=1)
 
 
