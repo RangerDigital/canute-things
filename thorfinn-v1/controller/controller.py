@@ -37,7 +37,14 @@ def on_message(client, userdata, msg):
     topic = msg.topic.split("/")
 
     if topic[2] == "locks":
-        lock = locks[int(topic["3"])]
+        print("--> Locks")
+
+        i = int(topic["3"])
+        print("ID:", i)
+
+        lock = locks[i]
+
+        print(lock)
 
         print("Blink!")
         lock.blink(on_time=0.5, off_time=0.5, n=1)
