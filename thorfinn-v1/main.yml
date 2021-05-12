@@ -13,3 +13,15 @@
         requirements: ~/controller/requirements.txt
         executable: pip3
       
+    - name: Install controller service file.
+      copy:
+        src: templates/controller.service
+        dest: /etc/systemd/system
+        owner: root
+        group: root
+
+    - name: Start controller service.
+      systemd:
+        name: controller
+        state: started
+        enabled: yes
