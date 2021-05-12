@@ -7,6 +7,8 @@
       copy: 
         src: controller
         dest: ~/
+      notify:
+      - Restart controller service.
 
     - name: Install controller module code python requirements.
       pip:
@@ -27,3 +29,10 @@
         name: controller
         state: started
         enabled: yes
+
+  handlers:
+    - name: Restart controller service.
+      become: yes
+      systemd:
+        name: controller
+        state: restarted
